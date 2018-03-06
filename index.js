@@ -3,7 +3,7 @@ const app = express();
 const path = require('path');
 const parse = require('./parsers')
 
-app.get('/api', (req,res) => {
+app.get('/', (req,res) => {
     try {
         const ip = parse.ip(req);
         const language = parse.lang(req);
@@ -20,11 +20,6 @@ app.get('/api', (req,res) => {
         })
     }
 })
-
-app.use(express.static(path.resolve(__dirname, 'public')));
-app.get('/', function(request, response) {
-    response.sendFile(path.resolve(__dirname, 'public', 'index.html'));
-});
 
 app.set('port', process.env.PORT || 8080)
 
